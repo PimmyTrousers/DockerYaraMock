@@ -12,9 +12,9 @@ RUN git clone https://github.com/VirusTotal/yara.git /tmp/yara
 WORKDIR ${YARA_SRC_PATH}
 RUN \
     apt update && \
-    apt install automake libtool make pkg-config libyara-dev libc-dev -y && \
+    apt install automake libtool make pkg-config flex bison libjansson-dev libmagic-dev libssl-dev -y && \
     ./bootstrap.sh && \
-    ./configure && \
+    ./configure --enable-cuckoo --enable-magic --enable-debug --enable-dotnet --enable-macho --enable-dex  && \
     make && \
     make install && \
     rm -rf ${YARA_SRC_PATH}
@@ -47,12 +47,14 @@ RUN git clone https://github.com/VirusTotal/yara.git /tmp/yara
 WORKDIR ${YARA_SRC_PATH}
 RUN \
     apt update && \
-    apt install automake libtool make pkg-config libyara-dev libc-dev -y && \
+    apt install automake libtool make pkg-config flex bison libjansson-dev libmagic-dev libssl-dev -y && \
     ./bootstrap.sh && \
-    ./configure && \
+    ./configure --enable-cuckoo --enable-magic --enable-debug --enable-dotnet --enable-macho --enable-dex && \
     make && \
     make install && \
     rm -rf ${YARA_SRC_PATH}
+
+RUN ldconfig
 
 RUN git clone https://github.com/Yara-Rules/rules.git ${YARA_RULES_DIR}
 
