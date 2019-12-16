@@ -2,6 +2,8 @@
 
 Quick test to show a potential bug within Go Yara, or at least how it interacts with docker. 
 
+UPDATE: As of now the issue is fixed with the commit that Hillu made to the dockerfile. 
+
 # Steps To Recreate
 1. `docker build -t dockeryara:latest . && docker run -p 8000:8000 dockeryara:latest `
 2. unzip the wannacry_test.zip with password `infected123`
